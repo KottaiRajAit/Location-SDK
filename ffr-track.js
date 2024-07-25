@@ -58,13 +58,15 @@ function ochntrack() { //initialization function
       consentCookie = consentCookie ? JSON.parse(consentCookie) : null;
       cookieAccepted = consentCookie?.marketing
     }
-    if (cookieAccepted) {
+    // if (cookieAccepted) {
         if (ochn && ochn.init) ochn.init();
         if (ochn && ochn.send) ochn.send("action", "visit");
-    }
+    // }
 }
+ochntrack()
 window.onclick = () => {
-    if (window.location.pathname != loc) {
+  console.log("vvvvvvvvvv")
+    // if (window.location.pathname != loc) {
         loc = window.location.pathname;
         let consentCookie = getCookie('cookie_consent');
         let cookieAccepted = false;
@@ -76,8 +78,12 @@ window.onclick = () => {
           consentCookie = consentCookie ? JSON.parse(consentCookie) : null;
           cookieAccepted = consentCookie?.analytics
         }
+        console.log("eeeeeeeeeee")
         // if (cookieAccepted) {
-          if (ochn && ochn.send) ochn.send("action", "visit")
+          if (ochn && ochn.send){
+            console.log("vvvvvvvvvbbbbbb",ochn.send)
+            ochn.send("action", "visit")
+          } 
         // }
-    }
+    // }
 }
