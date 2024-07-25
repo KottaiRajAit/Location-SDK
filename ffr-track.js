@@ -6,7 +6,7 @@ if (window.location.origin.includes('staging') || window.location.origin.include
     crmDomain = "http://localhost:3000"
 } else {
      ochnkey = 'sw1cs4S4SCdL8fN85dC5PuDU';
-    crmDomain = "http://localhost:3000"
+    crmDomain = "https://46ab-14-102-2-74.ngrok-free.app"
 }
 function getCookie(cookieName) {
     const cookies = document.cookie.split(';');
@@ -63,7 +63,7 @@ function ochntrack() { //initialization function
         if (ochn && ochn.send) ochn.send("action", "visit");
     // }
 }
-// ochntrack()
+ochntrack()
 
  function getCurrentPosition() {
   console.log("inside the coords")
