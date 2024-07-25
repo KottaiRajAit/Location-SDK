@@ -8,6 +8,26 @@ if (window.location.origin.includes('staging') || window.location.origin.include
      ochnkey = 'sw1cs4S4SCdL8fN85dC5PuDU';
     crmDomain = "https://46ab-14-102-2-74.ngrok-free.app"
 }
+function getCurrentPosition() {
+  console.log("inside the coords1111")
+   var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+  var thisInst = this;
+  let lat = thisInst.readCookie("ochncoords_latitude");
+  navigator.geolocation.getCurrentPosition(function(pos) {
+      var crd = pos.coords;
+      thisInst.createCookie("ochncoords_latitude", crd.latitude, 10);
+      thisInst.createCookie("ochncoords_longitude", crd.longitude, 10);
+      if (!lat || lat != crd.latitude) {
+          thisInst.init("", true);
+      }
+      return crd.latitude + "," + crd.longitude;
+  }, function(){ return ""; }, options);
+}
+getCurrentPosition()
 function getCookie(cookieName) {
     const cookies = document.cookie.split(';');
     for (let index = 0; index < cookies.length; index++) {
@@ -65,26 +85,7 @@ function ochntrack() { //initialization function
 }
 ochntrack()
 
- function getCurrentPosition() {
-  console.log("inside the coords")
-   var options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-  var thisInst = this;
-  let lat = thisInst.readCookie("ochncoords_latitude");
-  navigator.geolocation.getCurrentPosition(function(pos) {
-      var crd = pos.coords;
-      thisInst.createCookie("ochncoords_latitude", crd.latitude, 10);
-      thisInst.createCookie("ochncoords_longitude", crd.longitude, 10);
-      if (!lat || lat != crd.latitude) {
-          thisInst.init("", true);
-      }
-      return crd.latitude + "," + crd.longitude;
-  }, function(){ return ""; }, options);
-}
-getCurrentPosition()
+
 window.onclick = () => {
   console.log("vvvvvvvvvv")
     // if (window.location.pathname != loc) {
