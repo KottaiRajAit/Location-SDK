@@ -76,8 +76,8 @@ window.onclick = () => {
           consentCookie = consentCookie ? JSON.parse(consentCookie) : null;
           cookieAccepted = consentCookie?.analytics
         }
-        if (cookieAccepted) {
+        // if (cookieAccepted) {
           if (ochn && ochn.send) ochn.send("action", "visit")
-        }
+        // }
     }
 }
