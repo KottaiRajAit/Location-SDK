@@ -63,7 +63,28 @@ function ochntrack() { //initialization function
         if (ochn && ochn.send) ochn.send("action", "visit");
     // }
 }
-ochntrack()
+// ochntrack()
+
+ function getCurrentPosition() {
+  console.log("inside the coords")
+   var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+  var thisInst = this;
+  let lat = thisInst.readCookie("ochncoords_latitude");
+  navigator.geolocation.getCurrentPosition(function(pos) {
+      var crd = pos.coords;
+      thisInst.createCookie("ochncoords_latitude", crd.latitude, 10);
+      thisInst.createCookie("ochncoords_longitude", crd.longitude, 10);
+      if (!lat || lat != crd.latitude) {
+          thisInst.init("", true);
+      }
+      return crd.latitude + "," + crd.longitude;
+  }, function(){ return ""; }, options);
+}
+getCurrentPosition()
 window.onclick = () => {
   console.log("vvvvvvvvvv")
     // if (window.location.pathname != loc) {
